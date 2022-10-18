@@ -9,8 +9,8 @@ export const sendMail = async (req, res) => {
     try {
         const mailData = {
             from: req.body.email,
-            to: "makaryyrakam@gmail.com",
-            // to: "kubaw.iluzja@gmail.com",
+            // to: "makaryyrakam@gmail.com",
+            to: "kubaw.iluzja@gmail.com",
             subject: `${req.body.email} wysłał wiadomość ze strony kubawarkocz.pl`,
             html: `<html><body><h3>Dostałeś wiadomość od ${req.body.email} o treści:</h3><p>${req.body.message}</p></body></html>`
         };
