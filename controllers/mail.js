@@ -5,7 +5,7 @@ dotenv.config();
 
 const mg = mailgun({ apiKey: process.env.API_KEY, domain: process.env.DOMAIN });
 
-export const sendMail = async (req, res) => {
+export const sendMailToKubawarkocz = async (req, res) => {
     try {
         const mailData = {
             from: req.body.email,
@@ -15,6 +15,19 @@ export const sendMail = async (req, res) => {
             html: `<html><body><h3>Dostałeś wiadomość od ${req.body.email} o treści:</h3><p>${req.body.message}</p></body></html>`
         };
         mg.messages().send(mailData, () => {
+            console.log(`Sending message from ${req.body.email}...`);
+        });
+
+        res.send("Message sent");
+    } catch (error) {
+        res.send("There was an error sending your message, try again");
+        console.log(error);
+    }
+};
+
+export const sendMailToDJKuba = async (req, res) => {
+    try {
+        mg.messages().send(req.body, () => {
             console.log(`Sending message from ${req.body.email}...`);
         });
 
